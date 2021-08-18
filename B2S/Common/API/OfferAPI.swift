@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct B2SAPI: MainAPI {
+struct OfferAPI: MainAPI {
     static func getOffer(completion: ServerResult?) {
         sendRequest(type: .post, url: B2SURL.offer.screen.url, parameters: nil, headers: nil, completion: completion)
     }
     
-    static func sign() {
-        
+    static func signDiscount(offerId: String, completion: ServerResult?) {
+        let params = ["offerId": offerId] as [String: AnyObject]
+        sendRequest(type: .post, url: B2SURL.offer.sign.url, parameters: params, headers: nil, completion: completion)
     }
 }

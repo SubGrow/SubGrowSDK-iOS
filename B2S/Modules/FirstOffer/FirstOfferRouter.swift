@@ -21,11 +21,9 @@ final class FirstOfferRouter {
 extension FirstOfferRouter: FirstOfferWireframeInterface {
     
     func navigate(to option: FirstOfferNavigationOption) {
-//        switch option {
-//        case .firstModule:
-//            openFirstModule()
-//        case .secondModule(let someData):
-//            openSecondModule(with someData)
-//        }
+        switch option {
+        case .dismiss:
+            viewController?.dismiss(animated: true)
+        }
     }
 }

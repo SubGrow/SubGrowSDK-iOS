@@ -7,13 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9CA98E85265E09AA007D3954 /* B2S.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA98E83265E09AA007D3954 /* B2S.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C2BD3AB26CCFD3D00512392 /* B2SDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BD3AA26CCFD3D00512392 /* B2SDelegate.swift */; };
+		9C32D9B42695844000B052D1 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D9B32695844000B052D1 /* StoreService.swift */; };
+		9C32D9B72695870900B052D1 /* IAPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D9B62695870900B052D1 /* IAPHandler.swift */; };
+		9C32D9BA26959DFB00B052D1 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D9B926959DFB00B052D1 /* Promise.swift */; };
+		9C3357BE269BFD0E000D327A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357BD269BFD0E000D327A /* Screen.swift */; };
+		9C3357C0269BFDC1000D327A /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357BF269BFDC1000D327A /* TextData.swift */; };
+		9C3357C2269BFDCE000D327A /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357C1269BFDCE000D327A /* ImageData.swift */; };
+		9C3357C5269C017A000D327A /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357C4269C017A000D327A /* Extension+UIColor.swift */; };
+		9C3357C7269C02EF000D327A /* ButtonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357C6269C02EF000D327A /* ButtonData.swift */; };
+		9C3357C9269C052B000D327A /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357C8269C052B000D327A /* Extension+NSAttributedString.swift */; };
+		9C3357CF269C59EB000D327A /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357CE269C59EB000D327A /* UserAPI.swift */; };
+		9C3357D7269C5D2D000D327A /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357D4269C5D2C000D327A /* VisualEffectView.swift */; };
+		9C3357D8269C5D2D000D327A /* UIViewEffectViewiOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3357D5269C5D2C000D327A /* UIViewEffectViewiOS14.swift */; };
+		9C3357D9269C5D2D000D327A /* VisualEffectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C3357D6269C5D2D000D327A /* VisualEffectView.h */; };
+		9C3DA57A2692DE1C00DA8232 /* B2S.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5792692DE1C00DA8232 /* B2S.swift */; };
+		9C3DA57E2692DF5C00DA8232 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA57D2692DF5C00DA8232 /* KeychainService.swift */; };
+		9C3DA5832692E11500DA8232 /* MainAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5812692E11500DA8232 /* MainAPI.swift */; };
+		9C3DA5842692E11500DA8232 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5822692E11500DA8232 /* APIResponse.swift */; };
+		9C3DA5862692E2B900DA8232 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5852692E2B900DA8232 /* Constants.swift */; };
+		9C3DA5892692E3D000DA8232 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5882692E3D000DA8232 /* HTTPMethod.swift */; };
+		9C3DA58C2692E55500DA8232 /* Extension+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA58B2692E55500DA8232 /* Extension+Dictionary.swift */; };
+		9C3DA58F2692E6B000DA8232 /* B2SURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA58E2692E6B000DA8232 /* B2SURL.swift */; };
+		9C3DA5922692E6E600DA8232 /* HostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5912692E6E600DA8232 /* HostProtocol.swift */; };
+		9C3DA5952692E89600DA8232 /* OfferAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5942692E89600DA8232 /* OfferAPI.swift */; };
+		9C3DA5C626930EDE00DA8232 /* PurchaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5C526930EDE00DA8232 /* PurchaseAPI.swift */; };
+		9C3DA5CF26932C0400DA8232 /* FirstOffer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DA5C826932C0400DA8232 /* FirstOffer.storyboard */; };
+		9C3DA5D026932C0400DA8232 /* FirstOfferPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5C926932C0400DA8232 /* FirstOfferPresenter.swift */; };
+		9C3DA5D126932C0400DA8232 /* FirstOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5CA26932C0400DA8232 /* FirstOfferRouter.swift */; };
+		9C3DA5D226932C0400DA8232 /* FirstOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5CB26932C0400DA8232 /* FirstOfferViewController.swift */; };
+		9C3DA5D326932C0400DA8232 /* FirstOfferProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5CC26932C0400DA8232 /* FirstOfferProtocols.swift */; };
+		9C3DA5D426932C0400DA8232 /* FirstOfferInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5CD26932C0400DA8232 /* FirstOfferInteractor.swift */; };
+		9C3DA5D526932C0400DA8232 /* FirstOfferConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DA5CE26932C0400DA8232 /* FirstOfferConfigurator.swift */; };
+		9C3DA5D826932CAB00DA8232 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DA5D726932CAB00DA8232 /* Assets.xcassets */; };
+		9C90334326998D9B00ED1775 /* B2SService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C90334226998D9B00ED1775 /* B2SService.swift */; };
+		9C90334526998E0D00ED1775 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C90334426998E0D00ED1775 /* Offer.swift */; };
+		9CB08A232696D54F00CE6D7B /* DiscountSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB08A222696D54F00CE6D7B /* DiscountSignature.swift */; };
+		9CFC6F652693321200E3C49C /* Extension+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC6F642693321200E3C49C /* Extension+UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C2BD3AA26CCFD3D00512392 /* B2SDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2SDelegate.swift; sourceTree = "<group>"; };
+		9C32D9B32695844000B052D1 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
+		9C32D9B62695870900B052D1 /* IAPHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHandler.swift; sourceTree = "<group>"; };
+		9C32D9B926959DFB00B052D1 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		9C3357BD269BFD0E000D327A /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		9C3357BF269BFDC1000D327A /* TextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
+		9C3357C1269BFDCE000D327A /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
+		9C3357C4269C017A000D327A /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		9C3357C6269C02EF000D327A /* ButtonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonData.swift; sourceTree = "<group>"; };
+		9C3357C8269C052B000D327A /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
+		9C3357CE269C59EB000D327A /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		9C3357D4269C5D2C000D327A /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		9C3357D5269C5D2C000D327A /* UIViewEffectViewiOS14.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEffectViewiOS14.swift; sourceTree = "<group>"; };
+		9C3357D6269C5D2D000D327A /* VisualEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisualEffectView.h; sourceTree = "<group>"; };
+		9C3DA5792692DE1C00DA8232 /* B2S.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2S.swift; sourceTree = "<group>"; };
+		9C3DA57D2692DF5C00DA8232 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		9C3DA5812692E11500DA8232 /* MainAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAPI.swift; sourceTree = "<group>"; };
+		9C3DA5822692E11500DA8232 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		9C3DA5852692E2B900DA8232 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9C3DA5882692E3D000DA8232 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		9C3DA58B2692E55500DA8232 /* Extension+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Dictionary.swift"; sourceTree = "<group>"; };
+		9C3DA58E2692E6B000DA8232 /* B2SURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2SURL.swift; sourceTree = "<group>"; };
+		9C3DA5912692E6E600DA8232 /* HostProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostProtocol.swift; sourceTree = "<group>"; };
+		9C3DA5942692E89600DA8232 /* OfferAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferAPI.swift; sourceTree = "<group>"; };
+		9C3DA5BC2692F37900DA8232 /* B2S.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = B2S.h; sourceTree = "<group>"; };
+		9C3DA5C526930EDE00DA8232 /* PurchaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAPI.swift; sourceTree = "<group>"; };
+		9C3DA5C826932C0400DA8232 /* FirstOffer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstOffer.storyboard; sourceTree = "<group>"; };
+		9C3DA5C926932C0400DA8232 /* FirstOfferPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferPresenter.swift; sourceTree = "<group>"; };
+		9C3DA5CA26932C0400DA8232 /* FirstOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferRouter.swift; sourceTree = "<group>"; };
+		9C3DA5CB26932C0400DA8232 /* FirstOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferViewController.swift; sourceTree = "<group>"; };
+		9C3DA5CC26932C0400DA8232 /* FirstOfferProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferProtocols.swift; sourceTree = "<group>"; };
+		9C3DA5CD26932C0400DA8232 /* FirstOfferInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferInteractor.swift; sourceTree = "<group>"; };
+		9C3DA5CE26932C0400DA8232 /* FirstOfferConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOfferConfigurator.swift; sourceTree = "<group>"; };
+		9C3DA5D726932CAB00DA8232 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C90334226998D9B00ED1775 /* B2SService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2SService.swift; sourceTree = "<group>"; };
+		9C90334426998E0D00ED1775 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		9CA98E80265E09AA007D3954 /* B2S.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = B2S.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CA98E83265E09AA007D3954 /* B2S.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = B2S.h; sourceTree = "<group>"; };
 		9CA98E84265E09AA007D3954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CB08A222696D54F00CE6D7B /* DiscountSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountSignature.swift; sourceTree = "<group>"; };
+		9CFC6F642693321200E3C49C /* Extension+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIApplication.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +100,137 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C32D9B5269586EC00B052D1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9C32D9B62695870900B052D1 /* IAPHandler.swift */,
+				9C32D9B926959DFB00B052D1 /* Promise.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9C3357D2269C5D10000D327A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C3357D3269C5D25000D327A /* VisualEffectView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9C3357D3269C5D25000D327A /* VisualEffectView */ = {
+			isa = PBXGroup;
+			children = (
+				9C3357D5269C5D2C000D327A /* UIViewEffectViewiOS14.swift */,
+				9C3357D6269C5D2D000D327A /* VisualEffectView.h */,
+				9C3357D4269C5D2C000D327A /* VisualEffectView.swift */,
+			);
+			path = VisualEffectView;
+			sourceTree = "<group>";
+		};
+		9C3DA57B2692DF4E00DA8232 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9C3357D2269C5D10000D327A /* Views */,
+				9C3DA5872692E3CA00DA8232 /* Models */,
+				9C3DA57F2692E0F500DA8232 /* API */,
+				9C3DA58D2692E6A800DA8232 /* URLs */,
+				9C32D9B5269586EC00B052D1 /* Helpers */,
+				9C3DA58A2692E54A00DA8232 /* Extensions */,
+				9C3DA5902692E6DC00DA8232 /* Protocols */,
+				9C3DA5852692E2B900DA8232 /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9C3DA57C2692DF5500DA8232 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA57D2692DF5C00DA8232 /* KeychainService.swift */,
+				9C32D9B32695844000B052D1 /* StoreService.swift */,
+				9C90334226998D9B00ED1775 /* B2SService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9C3DA57F2692E0F500DA8232 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5802692E11500DA8232 /* Main */,
+				9C3DA5942692E89600DA8232 /* OfferAPI.swift */,
+				9C3DA5C526930EDE00DA8232 /* PurchaseAPI.swift */,
+				9C3357CE269C59EB000D327A /* UserAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		9C3DA5802692E11500DA8232 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5812692E11500DA8232 /* MainAPI.swift */,
+				9C3DA5822692E11500DA8232 /* APIResponse.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9C3DA5872692E3CA00DA8232 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9CB08A202696D53100CE6D7B /* Internal */,
+				9CB08A212696D53B00CE6D7B /* Network */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9C3DA58A2692E54A00DA8232 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA58B2692E55500DA8232 /* Extension+Dictionary.swift */,
+				9CFC6F642693321200E3C49C /* Extension+UIApplication.swift */,
+				9C3357C4269C017A000D327A /* Extension+UIColor.swift */,
+				9C3357C8269C052B000D327A /* Extension+NSAttributedString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C3DA58D2692E6A800DA8232 /* URLs */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA58E2692E6B000DA8232 /* B2SURL.swift */,
+			);
+			path = URLs;
+			sourceTree = "<group>";
+		};
+		9C3DA5902692E6DC00DA8232 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5912692E6E600DA8232 /* HostProtocol.swift */,
+				9C2BD3AA26CCFD3D00512392 /* B2SDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9C3DA5C726932BAD00DA8232 /* FirstOffer */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5C826932C0400DA8232 /* FirstOffer.storyboard */,
+				9C3DA5C926932C0400DA8232 /* FirstOfferPresenter.swift */,
+				9C3DA5CA26932C0400DA8232 /* FirstOfferRouter.swift */,
+				9C3DA5CB26932C0400DA8232 /* FirstOfferViewController.swift */,
+				9C3DA5CC26932C0400DA8232 /* FirstOfferProtocols.swift */,
+				9C3DA5CD26932C0400DA8232 /* FirstOfferInteractor.swift */,
+				9C3DA5CE26932C0400DA8232 /* FirstOfferConfigurator.swift */,
+			);
+			path = FirstOffer;
+			sourceTree = "<group>";
+		};
+		9C3DA5D626932C9B00DA8232 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5D726932CAB00DA8232 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9CA98E76265E09AA007D3954 = {
 			isa = PBXGroup;
 			children = (
@@ -46,10 +250,52 @@
 		9CA98E82265E09AA007D3954 /* B2S */ = {
 			isa = PBXGroup;
 			children = (
-				9CA98E83265E09AA007D3954 /* B2S.h */,
+				9CA98EBC265E0A63007D3954 /* Modules */,
+				9C3DA57B2692DF4E00DA8232 /* Common */,
+				9C3DA57C2692DF5500DA8232 /* Services */,
+				9C3DA5D626932C9B00DA8232 /* Resources */,
+				9CA98E8B265E0A36007D3954 /* Frameworks */,
 				9CA98E84265E09AA007D3954 /* Info.plist */,
+				9C3DA5BC2692F37900DA8232 /* B2S.h */,
 			);
 			path = B2S;
+			sourceTree = "<group>";
+		};
+		9CA98E8B265E0A36007D3954 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		9CA98EBC265E0A63007D3954 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5C726932BAD00DA8232 /* FirstOffer */,
+				9C3DA5792692DE1C00DA8232 /* B2S.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9CB08A202696D53100CE6D7B /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				9C3DA5882692E3D000DA8232 /* HTTPMethod.swift */,
+				9C3357BF269BFDC1000D327A /* TextData.swift */,
+				9C3357C1269BFDCE000D327A /* ImageData.swift */,
+				9C3357C6269C02EF000D327A /* ButtonData.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		9CB08A212696D53B00CE6D7B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9CB08A222696D54F00CE6D7B /* DiscountSignature.swift */,
+				9C90334426998E0D00ED1775 /* Offer.swift */,
+				9C3357BD269BFD0E000D327A /* Screen.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +305,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA98E85265E09AA007D3954 /* B2S.h in Headers */,
+				9C3357D9269C5D2D000D327A /* VisualEffectView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +366,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3DA5D826932CAB00DA8232 /* Assets.xcassets in Resources */,
+				9C3DA5CF26932C0400DA8232 /* FirstOffer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +378,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C90334526998E0D00ED1775 /* Offer.swift in Sources */,
+				9C3DA5892692E3D000DA8232 /* HTTPMethod.swift in Sources */,
+				9C3DA5D426932C0400DA8232 /* FirstOfferInteractor.swift in Sources */,
+				9C32D9BA26959DFB00B052D1 /* Promise.swift in Sources */,
+				9C3DA57E2692DF5C00DA8232 /* KeychainService.swift in Sources */,
+				9C3357D8269C5D2D000D327A /* UIViewEffectViewiOS14.swift in Sources */,
+				9C2BD3AB26CCFD3D00512392 /* B2SDelegate.swift in Sources */,
+				9CFC6F652693321200E3C49C /* Extension+UIApplication.swift in Sources */,
+				9C3357C0269BFDC1000D327A /* TextData.swift in Sources */,
+				9C3357CF269C59EB000D327A /* UserAPI.swift in Sources */,
+				9C3DA5D126932C0400DA8232 /* FirstOfferRouter.swift in Sources */,
+				9C3DA5D326932C0400DA8232 /* FirstOfferProtocols.swift in Sources */,
+				9C3DA5952692E89600DA8232 /* OfferAPI.swift in Sources */,
+				9C3DA5D026932C0400DA8232 /* FirstOfferPresenter.swift in Sources */,
+				9C3DA5832692E11500DA8232 /* MainAPI.swift in Sources */,
+				9C3357D7269C5D2D000D327A /* VisualEffectView.swift in Sources */,
+				9C3DA5922692E6E600DA8232 /* HostProtocol.swift in Sources */,
+				9C3357C7269C02EF000D327A /* ButtonData.swift in Sources */,
+				9CB08A232696D54F00CE6D7B /* DiscountSignature.swift in Sources */,
+				9C3357C2269BFDCE000D327A /* ImageData.swift in Sources */,
+				9C3DA5D526932C0400DA8232 /* FirstOfferConfigurator.swift in Sources */,
+				9C90334326998D9B00ED1775 /* B2SService.swift in Sources */,
+				9C3DA57A2692DE1C00DA8232 /* B2S.swift in Sources */,
+				9C3DA5862692E2B900DA8232 /* Constants.swift in Sources */,
+				9C3DA58C2692E55500DA8232 /* Extension+Dictionary.swift in Sources */,
+				9C3DA5D226932C0400DA8232 /* FirstOfferViewController.swift in Sources */,
+				9C3DA5C626930EDE00DA8232 /* PurchaseAPI.swift in Sources */,
+				9C3357BE269BFD0E000D327A /* Screen.swift in Sources */,
+				9C3357C5269C017A000D327A /* Extension+UIColor.swift in Sources */,
+				9C3DA5842692E11500DA8232 /* APIResponse.swift in Sources */,
+				9C3DA58F2692E6B000DA8232 /* B2SURL.swift in Sources */,
+				9C32D9B72695870900B052D1 /* IAPHandler.swift in Sources */,
+				9C32D9B42695844000B052D1 /* StoreService.swift in Sources */,
+				9C3357C9269C052B000D327A /* Extension+NSAttributedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,22 +543,26 @@
 		9CA98E89265E09AA007D3954 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3HP2RX537T;
+				DEVELOPMENT_TEAM = U7P494MJ2A;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = B2S/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Bogunov.B2S;
+				PRODUCT_BUNDLE_IDENTIFIER = test.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,22 +571,26 @@
 		9CA98E8A265E09AA007D3954 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3HP2RX537T;
+				DEVELOPMENT_TEAM = U7P494MJ2A;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = B2S/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Bogunov.B2S;
+				PRODUCT_BUNDLE_IDENTIFIER = test.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

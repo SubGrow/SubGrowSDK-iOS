@@ -6,97 +6,43 @@
 //  Copyright © 2018 Egor Sakhabaev. All rights reserved.
 //
 import Foundation
-import Alamofire
-
-var alamofireManager: Session = {
-    let configuration = URLSessionConfiguration.default
-    configuration.timeoutIntervalForRequest = 15
-    let alamofireManager = Session(configuration: configuration)
-    return alamofireManager
-}()
 
 protocol MainAPI {
-    static func sendRequest(type: HTTPMethod, url: String!, baseURL: String, parameters: [String: AnyObject]?, headers: HTTPHeaders?, encoding: ParameterEncoding, completion: ServerResult?)
+    static func sendRequest(type: HTTPMethod, url: String, baseURL: String, parameters: [String: AnyObject]?, headers: [String: String]?, completion: ServerResult?)
 }
 
 extension MainAPI {
-
-    static func sendRequest(type: HTTPMethod, url: String!, baseURL: String = API.baseURL, parameters: [String: AnyObject]?, headers: HTTPHeaders?, encoding: ParameterEncoding = JSONEncoding(), completion: ServerResult?) {
-        var urlString = baseURL + url
-        var params = parameters
-        var encode = encoding
-        if type == .get {
-            encode = URLEncoding()
-        }
-        if type == .delete || parameters?.count == 1 && parameters?.keys.first == "" {
-            let values = parameters?.values.compactMap{$0}
-            if values?.count ?? 0 > 0 {
-                urlString.append("/\(values![0])")
-                params = nil
+    static func sendRequest(type: HTTPMethod, url: String, baseURL: String = B2SURL.api.url, parameters: [String: AnyObject]?, headers: [String: String]?, completion: ServerResult?) {
+        let params = (parameters ?? [:]).merging(defaultParams, uniquingKeysWith: { $1 })
+        let header: [String: String] = (headers ?? [:]).merging(defaultHeaders, uniquingKeysWith: { $1 })
+        guard let url = URL(string: baseURL + url) else { return }
+        var request = URLRequest(url: url, timeoutInterval: .init(12))
+        request.httpMethod = type.rawValue
+        request.allHTTPHeaderFields = header
+        request.httpBody = params.jsonString?.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, let responseData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], error == nil else {
+                completion?(.Error(error: error ?? InternalError.unknownError))
+                return
             }
-        }
-        
-        var header: HTTPHeaders = headers == nil ? HTTPHeaders() : headers!
-        header["Accept"] = "application/json"
-        if let token = AppSettings.accessToken {
-            header["Authorization"] = "Bearer \(token)"
-        }
-
-        let tagString = "[Request] "
-        print(tagString + urlString + "\r\n \(String(describing: params))")
-        alamofireManager.request(urlString, method: type, parameters: params, encoding: encode ,headers: header ).responseJSON { (response) in
-            switch response.result {
-            case let .failure(error):
-                var errorDescription = error.localizedDescription
-                if error.isSessionTaskError {
-                    errorDescription = AppError.noInternetConnection.localizedDescription
-                }
-                completion?(.Error(error: AppError.custom(code: error.responseCode ?? 0, title: "", message: errorDescription)))
-            case let .success(responseData):
-                if let data = try? Response(object: responseData as? [String: Any] ?? [:])  {
-                    completion?( .Success (response: data))
-                } else {
-                    var error = AppError.unknownError
-                    if let code = (responseData as? [String: Any])?["code"] as? Int, let message = (responseData as? [String: Any])?["message"] as? String {
-                        error = AppError.custom(code: code, title: "", message: message)
-                    }
-                    completion?(.Error(error: error))
-                }
-            }
-        }
-    }
-        
-    static func upload(url: String!, baseURL: String = API.baseURL, images: [UIImage], imagesKey: String = "file", params: [String: String] = [:], headers: HTTPHeaders?, completion: ServerResult?) {
-        let urlString = baseURL + url
-        var header: HTTPHeaders = headers == nil ? HTTPHeaders() : headers!
-        header["Accept"] = "application/json"
-        if let token = AppSettings.accessToken {
-            header["Authorization"] = "Bearer \(token)"
-        }
-        AF.upload(multipartFormData: { (multipartFormData) in
-            for (index, image) in images.enumerated() {
-                let imgData = image.jpegData(compressionQuality: 0.8)!
-                multipartFormData.append(imgData, withName: imagesKey, fileName: "image\(index).jpg", mimeType: "image/jpg")
-            }
-            params.forEach {
-                multipartFormData.append($0.value.data(using: .utf8) ?? Data(), withName: $0.key)
-            }
-        }, to: urlString, headers: header).responseJSON { (response) in
-            switch response.result {
-            case let .failure(error):
-                completion?(.Error(error: AppError.custom(code: error.responseCode ?? 0, title: "", message: error.localizedDescription)))
-            case let .success(responseData):
-                if let data = try? Response(object: responseData as? [String: Any] ?? [:])  {
-                    completion?( .Success (response: data))
-                } else {
-                    var error = AppError.unknownError
-                    if let code = (responseData as? [String: Any])?["code"] as? Int, let message = (responseData as? [String: Any])?["message"] as? String {
-                        error = AppError.custom(code: code, title: "", message: message)
-                    }
-                    completion?(.Error(error: error))
-                }
-            }
-        }
+            completion?(.Success(response: responseData))
+        }.resume()
     }
 }
+// MARK: - Private methods
+extension MainAPI {
+    private static var defaultParams: [String: AnyObject] {
+        let params = [
+            "sdkKey": B2S.sdkKey,
+            "deviceId": B2S.deviceId
+            ] as [String: AnyObject]
+        return params
+    }
+    
+    private static var defaultHeaders: [String: String] {
+        let headers: [String: String] = ["Accept": "application/json",
+                                         "Content-Type": "application/json"]
 
+        return headers
+    }
+}

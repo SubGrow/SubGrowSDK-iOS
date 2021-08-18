@@ -10,11 +10,11 @@
 //
 
 import Foundation
+import StoreKit
 
 // MARK: - Wireframe
 enum FirstOfferNavigationOption {
-//    case firstModule
-//    case secondModule(someData)
+    case dismiss
 }
 
 protocol FirstOfferWireframeInterface: AnyObject {
@@ -25,6 +25,9 @@ protocol FirstOfferWireframeInterface: AnyObject {
 protocol FirstOfferPresenterInterface: AnyObject {
     
     var interactor: FirstOfferInteractorInput? { get set }
+    
+    func didSelectAction()
+    func didSelectClose()
     
     // MARK: - Lifecycle
     func viewDidLoad()
@@ -45,6 +48,10 @@ extension FirstOfferPresenterInterface {
 // MARK: - Interactor
 protocol FirstOfferInteractorOutput: AnyObject {
     
+    func purchasedPromotionOffer(with transaction: SKPaymentTransaction, offerData: (productId: String, offerId: String))
+    func purchasedPromotionOffer(with error: Error, offerData: (productId: String, offerId: String))
+
+    func fetchedFully()
     /* Interactor -> Presenter */
 }
 
@@ -52,6 +59,7 @@ protocol FirstOfferInteractorInput: AnyObject {
     
     var presenter: FirstOfferInteractorOutput? { get set }
     
+    func purchasePromotionOffer(productId: String, offerId: String)
     /* Presenter -> Interactor */
 }
 
@@ -60,5 +68,10 @@ protocol FirstOfferView: AnyObject {
     
     var presenter: FirstOfferPresenterInterface? { get set }
     
+    func display(image: ImageData?, title: TextData?, subtitle: TextData?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?))
+    func display(termsAndPrivacyText: NSAttributedString)
+    
+    func startLoading()
+    func stopLoading()
     /* Presenter -> ViewController */
 }

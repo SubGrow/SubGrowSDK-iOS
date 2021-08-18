@@ -9,7 +9,8 @@
 //  https://github.com/Banck/Swift-viper-template-for-xcode
 //
 
-import Foundation
+import UIKit
+import StoreKit
 
 final class FirstOfferPresenter {
     
@@ -17,23 +18,58 @@ final class FirstOfferPresenter {
     weak private var view: FirstOfferView?
     var interactor: FirstOfferInteractorInput?
     private let router: FirstOfferWireframeInterface
+    private let offer: Offer
     
     // MARK: - Initialization and deinitialization
     init(interface: FirstOfferView,
          interactor: FirstOfferInteractorInput?,
-         router: FirstOfferWireframeInterface) {
+         router: FirstOfferWireframeInterface,
+         offer: Offer) {
         self.view = interface
         self.interactor = interactor
         self.router = router
+        self.offer = offer
     }
 }
 
 // MARK: - FirstOfferPresenterInterface
 extension FirstOfferPresenter: FirstOfferPresenterInterface {
+    func didSelectAction() {
+        B2S.delegate?.b2sPromotionOfferWillPurchase?(productId: offer.productId, offerId: offer.offerId)
+        view?.startLoading()
+        interactor?.purchasePromotionOffer(productId: offer.productId, offerId: offer.offerId)
+    }
+
+    func didSelectClose() {
+        router.navigate(to: .dismiss)
+    }
     
+    // MARK: - Lifecycle -
+    func viewDidLoad() {
+        view?.display(image: offer.screenData.image,
+                      title: offer.screenData.title,
+                      subtitle: offer.screenData.subtitle,
+                      offer: offer.screenData.offer,
+                      promotionButton: offer.screenData.promotionButton,
+                      background: (image: offer.screenData.backgroundImage, color: offer.screenData.backgroundColor))
+        
+        let termsAndPrivacyText = "<style> p {text-align: center;}</style><body><p><a href=\"\(offer.screenData.rulesURL)\">Terms of Service</a> and <a href=\"\(offer.screenData.privacyURL)\">Privacy Policy</a></p></body>".htmlToString(color: .black)
+        view?.display(termsAndPrivacyText: termsAndPrivacyText)
+    }
 }
 
 // MARK: - FirstOfferInteractorOutput
 extension FirstOfferPresenter: FirstOfferInteractorOutput {
+    func purchasedPromotionOffer(with transaction: SKPaymentTransaction, offerData: (productId: String, offerId: String)) {
+        B2S.delegate?.b2sPromotionOfferDidPurchase?(productId: offerData.productId, offerId: offerData.offerId)
+    }
     
+    func purchasedPromotionOffer(with error: Error, offerData: (productId: String, offerId: String)) {
+        let errorCode = (error as? SKError)?.code ?? .unknown
+        B2S.delegate?.b2sPromotionOfferDidFailPurchase?(productId: offerData.productId, offerId: offerData.offerId, errorCode: errorCode)
+    }
+    
+    func fetchedFully() {
+        view?.stopLoading()
+    }
 }

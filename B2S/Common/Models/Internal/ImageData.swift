@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct ImageData: Codable {
+    let url: String
+    let base64: String
+}

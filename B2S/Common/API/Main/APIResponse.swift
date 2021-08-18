@@ -6,10 +6,9 @@
 //  Copyright © 2018 Egor Sakhabaev. All rights reserved.
 //
 import Foundation
-import Marshal
 
 enum APIResponse {
-    case Success (response: Response)
+    case Success (response: [String: Any])
     case Error (error: Error)
 }
 
@@ -22,27 +21,3 @@ enum ResponseError: Error {
     case unknownError
 }
 
-struct Response: Unmarshaling {
-    var status: Bool?
-    var responseData: Any?
-    var pagination: [String: Any]?
-    
-    init(object: MarshaledObject) throws {
-        status       = try? object.value(for: "success")
-        responseData = (try? object.any(for: "data")) ?? (try? object.any(for: "response"))
-        pagination   = try? object.value(for: "meta")
-    }
-}
-
-// MARK: - Status
-extension Response {
-    struct Status: Unmarshaling {
-        let code: Int
-        let message: String?
-        
-        init(object: MarshaledObject) throws {
-            code = try object.value(for: "code")
-            message = try? object.value(for: "message")
-        }
-    }
-}

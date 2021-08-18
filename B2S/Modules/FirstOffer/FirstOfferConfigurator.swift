@@ -13,8 +13,8 @@ import UIKit
 
 struct FirstOfferConfigurator {
     
-    static func createModule() -> UIViewController {
-        let storyboard = UIStoryboard(name: "FirstOffer", bundle: Bundle.main)
+    static func createModule(with offer: Offer) -> UIViewController {
+        let storyboard = UIStoryboard(name: "FirstOffer", bundle: Bundle(for: FirstOfferViewController.self))
         guard let storyboardViewController = storyboard.instantiateInitialViewController() else {
             fatalError("FirstOffer.storyboard has no initial view controller")
         }
@@ -25,6 +25,7 @@ struct FirstOfferConfigurator {
         } else {
             viewController = storyboardViewController
         }
+        viewController?.modalPresentationStyle = .fullScreen
         
         guard let view = viewController as? FirstOfferViewController else {
             fatalError("Failed to cast to FirstOfferViewController")
@@ -32,7 +33,7 @@ struct FirstOfferConfigurator {
         
         let interactor = FirstOfferInteractor()
         let router = FirstOfferRouter()
-        let presenter = FirstOfferPresenter(interface: view, interactor: interactor, router: router)
+        let presenter = FirstOfferPresenter(interface: view, interactor: interactor, router: router, offer: offer)
         
         view.presenter = presenter
         interactor.presenter = presenter

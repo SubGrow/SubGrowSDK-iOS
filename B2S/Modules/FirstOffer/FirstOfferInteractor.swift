@@ -17,4 +17,15 @@ final class FirstOfferInteractor: FirstOfferInteractorInput {
     weak var presenter: FirstOfferInteractorOutput?
     
     // MARK: - FirstOfferInteractorInput
+    func purchasePromotionOffer(productId: String, offerId: String) {
+        StoreService.purchasePromotionOffer(productId: productId, offerId: offerId)
+            .then { [weak self] transaction in
+                self?.presenter?.fetchedFully()
+                self?.presenter?.purchasedPromotionOffer(with: transaction, offerData: (productId: productId, offerId: offerId))
+            }
+            .catch { [weak self] error in
+                self?.presenter?.fetchedFully()
+                self?.presenter?.purchasedPromotionOffer(with: error, offerData: (productId: productId, offerId: offerId))
+            }
+    }
 }
