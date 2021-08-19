@@ -22,9 +22,10 @@ public struct B2S {
     internal static var pendingOffer: Offer?
     public static var delegate: B2SDelegate?
     
-    public static func configure(sdkKey: String, delegate: B2SDelegate?) {
+    public static func configure(sdkKey: String, delegate: B2SDelegate? = nil) {
         guard self.sdkKey == nil else { return }
         self.sdkKey = sdkKey
+        self.delegate = delegate
         _ = IAPHandler.shared
         
         B2SService.getOffer()
