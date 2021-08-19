@@ -27,7 +27,7 @@ class Keychain: NSObject {
     
     static public func getPasscode(identifier: String) -> String? {
         let keychainQuery = NSDictionary(
-            objects: [kSecClassGenericPasswordValue, identifier, kCFBooleanTrue, kSecMatchLimitOneValue],
+            objects: [kSecClassGenericPasswordValue, identifier, kCFBooleanTrue as Any, kSecMatchLimitOneValue],
             forKeys: [kSecClassValue, kSecAttrServiceValue, kSecReturnDataValue, kSecMatchLimitValue]);
         var dataTypeRef: AnyObject?
         let status: OSStatus = SecItemCopyMatching(keychainQuery, &dataTypeRef)
