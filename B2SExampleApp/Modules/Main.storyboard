@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SoS-fj-UgM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="fZK-bf-fho">
+            <objects>
+                <viewController id="SoS-fj-UgM" customClass="MainViewController" customModule="B2SDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z3h-FP-F3F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="9OP-og-482">
+                                <rect key="frame" x="47" y="318.5" width="281" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vy-yC-lft">
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="30"/>
+                                        <state key="normal" title="Купить com.b2s.subscription.oneMonth"/>
+                                        <connections>
+                                            <action selector="purchaseDidSelect:" destination="SoS-fj-UgM" eventType="touchUpInside" id="v7Q-Fb-fla"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iz-Nn-xul">
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="0.0"/>
+                                        <state key="normal" title="Принудительно открыть экран оффера"/>
+                                        <connections>
+                                            <action selector="openPromoDidSelect" destination="SoS-fj-UgM" eventType="touchUpInside" id="Mcg-eh-WBd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7Q-bj-vJe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bfx-pU-A7L">
+                                        <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.59928924358443714" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bfx-pU-A7L" firstAttribute="centerY" secondItem="k7Q-bj-vJe" secondAttribute="centerY" id="NKS-Ug-8jf"/>
+                                    <constraint firstItem="bfx-pU-A7L" firstAttribute="centerX" secondItem="k7Q-bj-vJe" secondAttribute="centerX" id="q6D-se-LNO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hQ9-ZE-P5D"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9OP-og-482" firstAttribute="centerX" secondItem="Z3h-FP-F3F" secondAttribute="centerX" id="0jH-NK-rGe"/>
+                            <constraint firstItem="k7Q-bj-vJe" firstAttribute="leading" secondItem="hQ9-ZE-P5D" secondAttribute="leading" id="5VT-Io-cfS"/>
+                            <constraint firstAttribute="bottom" secondItem="k7Q-bj-vJe" secondAttribute="bottom" id="AXW-Oh-apM"/>
+                            <constraint firstItem="hQ9-ZE-P5D" firstAttribute="trailing" secondItem="k7Q-bj-vJe" secondAttribute="trailing" id="K78-bn-tGP"/>
+                            <constraint firstItem="9OP-og-482" firstAttribute="centerY" secondItem="Z3h-FP-F3F" secondAttribute="centerY" id="Vr1-F1-MVf"/>
+                            <constraint firstItem="k7Q-bj-vJe" firstAttribute="top" secondItem="Z3h-FP-F3F" secondAttribute="top" id="l3h-nH-lnh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="bfx-pU-A7L" id="agK-jY-gcU"/>
+                        <outlet property="loaderView" destination="k7Q-bj-vJe" id="4nS-xA-aMy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATd-ux-id8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="52"/>
+        </scene>
+    </scenes>
+</document>

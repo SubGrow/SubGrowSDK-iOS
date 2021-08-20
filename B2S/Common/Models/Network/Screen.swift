@@ -13,8 +13,8 @@ struct Screen: Codable {
     let offer: TextData
     let promotionButton: ButtonData
     let language: String
-    let privacyURL: String
-    let rulesURL: String
+    let privacyURL: String?
+    let rulesURL: String?
     let image: ImageData?
     let backgroundColor: String?
     let backgroundImage: ImageData?

@@ -35,7 +35,7 @@ final class FirstOfferPresenter {
 // MARK: - FirstOfferPresenterInterface
 extension FirstOfferPresenter: FirstOfferPresenterInterface {
     func didSelectAction() {
-        B2S.delegate?.b2sPromotionOfferWillPurchase?(productId: offer.productId, offerId: offer.offerId)
+        B2S.shared.delegate?.b2sPromotionOfferWillPurchase?(productId: offer.productId, offerId: offer.offerId)
         view?.startLoading()
         interactor?.purchasePromotionOffer(productId: offer.productId, offerId: offer.offerId)
     }
@@ -53,20 +53,33 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
                       promotionButton: offer.screenData.promotionButton,
                       background: (image: offer.screenData.backgroundImage, color: offer.screenData.backgroundColor))
         
-        let termsAndPrivacyText = "<style> p {text-align: center;}</style><body><p><a href=\"\(offer.screenData.rulesURL)\">Terms of Service</a> and <a href=\"\(offer.screenData.privacyURL)\">Privacy Policy</a></p></body>".htmlToString(color: .black)
-        view?.display(termsAndPrivacyText: termsAndPrivacyText)
+        if offer.screenData.rulesURL != nil || offer.screenData.privacyURL != nil {
+            var termsAndPrivacyText: String = "<style> p {text-align: center;}</style><body><p>{rulesURL} and {privacyURL}</p></body>"
+            if let rulesURL = offer.screenData.rulesURL {
+                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{rulesURL}", with: "<a href=\"\(rulesURL)\">Terms of Service</a>")
+            } else {
+                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{rulesURL} and ", with: "")
+            }
+            if let privacyURL = offer.screenData.privacyURL {
+                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{privacyURL}", with: "<a href=\"\(privacyURL)\">Privacy Policy</a>")
+            } else {
+                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: " and {privacyURL}", with: "")
+            }
+            let termsColor = UIColor.hexStringToUIColor(hex: offer.screenData.subtitle.color)
+            view?.display(termsAndPrivacyText: termsAndPrivacyText.htmlToString(color: termsColor))
+        }
     }
 }
 
 // MARK: - FirstOfferInteractorOutput
 extension FirstOfferPresenter: FirstOfferInteractorOutput {
     func purchasedPromotionOffer(with transaction: SKPaymentTransaction, offerData: (productId: String, offerId: String)) {
-        B2S.delegate?.b2sPromotionOfferDidPurchase?(productId: offerData.productId, offerId: offerData.offerId)
+        B2S.shared.delegate?.b2sPromotionOfferDidPurchase?(productId: offerData.productId, offerId: offerData.offerId, transaction: transaction)
     }
     
     func purchasedPromotionOffer(with error: Error, offerData: (productId: String, offerId: String)) {
         let errorCode = (error as? SKError)?.code ?? .unknown
-        B2S.delegate?.b2sPromotionOfferDidFailPurchase?(productId: offerData.productId, offerId: offerData.offerId, errorCode: errorCode)
+        B2S.shared.delegate?.b2sPromotionOfferDidFailPurchase?(productId: offerData.productId, offerId: offerData.offerId, errorCode: errorCode)
     }
     
     func fetchedFully() {

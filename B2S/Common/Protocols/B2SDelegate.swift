@@ -24,7 +24,7 @@ import StoreKit
     /**
      Called when successfully purchased promotion offer.
      */
-    @objc optional func b2sPromotionOfferDidPurchase(productId: String, offerId: String)
+    @objc optional func b2sPromotionOfferDidPurchase(productId: String, offerId: String, transaction: SKPaymentTransaction)
     
     /**
      Called when purchase failed in promotion offer screen.

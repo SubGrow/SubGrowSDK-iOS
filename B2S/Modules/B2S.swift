@@ -8,7 +8,9 @@
 import Foundation
 import StoreKit
 
-public struct B2S {
+final public class B2S {
+    public static let shared = B2S()
+    
     internal static var deviceId: String {
         if let deviceUDID = Keychain.getPasscode(identifier: KeychainStoredData.deviceUDID.rawValue) {
             return deviceUDID
@@ -18,27 +20,37 @@ public struct B2S {
             return deviceUDID
         }
     }
-    internal static var sdkKey: String!
-    internal static var pendingOffer: Offer?
-    public static var delegate: B2SDelegate?
+    internal var sdkKey: String!
+    internal var pendingOffer: Offer?
+    public var delegate: B2SDelegate?
     
-    public static func configure(sdkKey: String, delegate: B2SDelegate? = nil) {
+    /**
+     Initializes B2S SDK. Call it during app launch.
+     - parameter sdkKey: Required. Your app's SDK key.
+     - parameter delegate: Optional. Any B2SDelegate conformable object. You will be able to set it later
+     */
+    @objc
+    public func configure(sdkKey: String, delegate: B2SDelegate? = nil) {
         guard self.sdkKey == nil else { return }
         self.sdkKey = sdkKey
         self.delegate = delegate
         _ = IAPHandler.shared
         
         B2SService.getOffer()
-            .then { offer in
-                if delegate?.b2sShouldDisplayPromotionOfferScreen?() != false {
-                    showPendingPromotionOfferScreen()
-                } else {
-                    pendingOffer = offer
+            .then { [weak self] offer in
+                self?.pendingOffer = offer
+                if self?.delegate?.b2sShouldDisplayPromotionOfferScreen?() != false {
+                    self?.showPendingPromotionOfferScreen()
                 }
             }
     }
     
-    public static func setPushToken(_ pushToken: Data) {
+    /**
+     Set device push token.
+     - parameter token: Push token in Data class.
+    */
+    @objc
+    public func setPushToken(_ pushToken: Data) {
         let tokenParts = pushToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
@@ -51,10 +63,12 @@ public struct B2S {
      Manually present promotion offer screen that was delayed for presentation, i.e. `false` was returned in `b2sShouldDisplayPromotionOfferScreen` delegate method.
      */
     @discardableResult
-    public static func showPendingPromotionOfferScreen() -> Bool {
+    @objc
+    public func showPendingPromotionOfferScreen() -> Bool {
         guard let offer = pendingOffer else {
             return false
         }
+        pendingOffer = nil
         let vc = FirstOfferConfigurator.createModule(with: offer)
         UIApplication.topViewController()?.present(vc, animated: true)
         return true

@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-B2SExampleApp/Pods-B2SExampleApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/B2S/B2S.framework
+${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "D4374CE2-6902-4474-83E1-850FC1DB0137"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29D0A508-38EE-4DFC-9894-22C41DB16AEA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B2SExampleApp/Modules/MainInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "purchaseProduct(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C7E3C2D-479F-4964-949D-44B73F916387"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B2SExampleApp/Modules/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "purchaseDidSelect(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4411D8D-4EA7-41C8-8CEB-23FF38ACD313"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B2S/Services/StoreService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "purchasePromotionOffer(productId:offerId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "732B5EC5-1AEA-49A3-99C5-2086B6CA6157"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B2S/Services/StoreService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "purchasePromotionOffer(productId:offerId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33CBFB0A-AA31-4EDF-B8A2-3116EFAB0CF7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B2S/Services/StoreService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetchProduct(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "33CBFB0A-AA31-4EDF-B8A2-3116EFAB0CF7 - c9bdc5beb159fadf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;__C.SKProduct&gt;) -&gt; () in closure #1 ((__C.SKProduct) -&gt; (), (Swift.Error) -&gt; ()) -&gt; () in static B2S.StoreService.fetchProduct(id: Swift.String) -&gt; B2S.Promise&lt;__C.SKProduct&gt;"
+                  moduleName = "B2S"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egorsakhabaev/Desktop/iOS%20Work/Bogunov/B2S/B2S/Services/StoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "33CBFB0A-AA31-4EDF-B8A2-3116EFAB0CF7 - db1f803fcbb7b24c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.SKProduct) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;__C.SKProduct&gt;) -&gt; () in closure #1 ((__C.SKProduct) -&gt; (), (Swift.Error) -&gt; ()) -&gt; () in static B2S.StoreService.fetchProduct(id: Swift.String) -&gt; B2S.Promise&lt;__C.SKProduct&gt;"
+                  moduleName = "B2S"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egorsakhabaev/Desktop/iOS%20Work/Bogunov/B2S/B2S/Services/StoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

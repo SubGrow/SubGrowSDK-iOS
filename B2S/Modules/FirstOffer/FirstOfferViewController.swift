@@ -50,17 +50,17 @@ class FirstOfferViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        B2S.delegate?.b2sScreenDidAppear?()
+        B2S.shared.delegate?.b2sScreenDidAppear?()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        B2S.delegate?.b2sScreenWillDismiss?()
+        B2S.shared.delegate?.b2sScreenWillDismiss?()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        B2S.delegate?.b2sScreenDidDismiss?()
+        B2S.shared.delegate?.b2sScreenDidDismiss?()
     }
 }
 

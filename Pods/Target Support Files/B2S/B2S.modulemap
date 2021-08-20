@@ -1,0 +1,6 @@
+framework module B2S {
+  umbrella header "B2S-umbrella.h"
+
+  export *
+  module * { export * }
+}
