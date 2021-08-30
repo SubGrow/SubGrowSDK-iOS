@@ -15,9 +15,9 @@ struct Screen: Codable {
     let language: String
     let privacyURL: String?
     let rulesURL: String?
-    let image: ImageData?
+    var image: ImageData?
     let backgroundColor: String?
-    let backgroundImage: ImageData?
+    var backgroundImage: ImageData?
     
     private enum CodingKeys : String, CodingKey {
         case title

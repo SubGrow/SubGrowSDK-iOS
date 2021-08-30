@@ -9,5 +9,6 @@ import Foundation
 
 struct ImageData: Codable {
     let url: String
+    var data: Data?
     let base64: String
 }

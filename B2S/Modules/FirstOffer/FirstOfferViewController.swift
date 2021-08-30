@@ -77,7 +77,7 @@ extension FirstOfferViewController: FirstOfferView {
     func display(image: ImageData?, title: TextData?, subtitle: TextData?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?)) {
         iconImageView.isHidden = image == nil
         if let imageData = image {
-            displayImage(.init(url: imageData.url, base64: ""), imageView: iconImageView, blurView: iconBlurView)
+            displayImage(imageData, imageView: iconImageView, blurView: iconBlurView)
         }
         
         titleLabel.text = title?.text
@@ -141,6 +141,11 @@ extension FirstOfferViewController {
 // MARK: - Private methods
 extension FirstOfferViewController {
     private func displayImage(_ data: ImageData, imageView: UIImageView, blurView: UIVisualEffectView) {
+        if let imageData = data.data, let image = UIImage(data: imageData) {
+            imageView.image = image
+            return
+        }
+        
         let placeholderImage = UIImage(data: Data(base64Encoded: data.base64) ?? Data())
         imageView.image = placeholderImage
         

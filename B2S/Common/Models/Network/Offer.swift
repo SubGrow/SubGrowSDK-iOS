@@ -10,7 +10,7 @@ import Foundation
 struct Offer: Codable {
     let offerId: String
     let productId: String
-    let screenData: Screen
+    var screenData: Screen
     
     private enum CodingKeys : String, CodingKey {
         case offerId    = "promotionOfferId"
