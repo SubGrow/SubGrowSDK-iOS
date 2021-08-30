@@ -1,11 +1,16 @@
 # Requirements
 B2S SDK requires minimum iOS 12.3 and Swift version 5.0.
 # Installation
-B2S SDK currently can be installed via CocoaPods or manually.
+B2S SDK currently can be installed via CocoaPods, Swift Package Manager or manually.
 # Install via CocoaPods
 Add the following line to your Podfile:
 ```sh
 pod 'B2S'
+```
+# Install via Swift Package Manager
+Add package dependency with the following URL:
+```sh
+https://github.com/BackToTheSubscription/B2S
 ```
 # Manual Installation
 Copy all files from B2S folder to your project from this [link](https://github.com/BackToTheSubscription/B2S).
