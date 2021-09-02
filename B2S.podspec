@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
     s.name              = 'B2S'
-    s.version           = '1.0.6'
+    s.version           = '1.0.7'
     s.summary           = 'Return your subscribers in easy way'
     s.homepage          = 'https://backtosub.com/'
 

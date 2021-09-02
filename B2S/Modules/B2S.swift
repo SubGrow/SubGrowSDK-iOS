@@ -23,17 +23,21 @@ final public class B2S {
     internal var sdkKey: String!
     internal var pendingOffer: Offer?
     public var delegate: B2SDelegate?
-    
+    public var language: String = Bundle.main.preferredLocalizations.first ?? "en"
     /**
      Initializes B2S SDK. Call it during app launch.
      - parameter sdkKey: Required. Your app's SDK key.
+     - parameter language: Optional. Offer screen localization language. Default main Bundle.main.preferredLocalizations.first or en
      - parameter delegate: Optional. Any B2SDelegate conformable object. You will be able to set it later
      */
     @objc
-    public func configure(sdkKey: String, delegate: B2SDelegate? = nil) {
+    public func configure(sdkKey: String, language: String? = nil, delegate: B2SDelegate? = nil) {
         guard self.sdkKey == nil else { return }
         self.sdkKey = sdkKey
         self.delegate = delegate
+        if let language = language {
+            self.language = language
+        }
         _ = IAPHandler.shared
         
         B2SService.getOffer()

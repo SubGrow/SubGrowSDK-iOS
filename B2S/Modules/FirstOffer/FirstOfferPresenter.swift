@@ -75,6 +75,7 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
 extension FirstOfferPresenter: FirstOfferInteractorOutput {
     func purchasedPromotionOffer(with transaction: SKPaymentTransaction, offerData: (productId: String, offerId: String)) {
         B2S.shared.delegate?.b2sPromotionOfferDidPurchase?(productId: offerData.productId, offerId: offerData.offerId, transaction: transaction)
+        router.navigate(to: .dismiss)
     }
     
     func purchasedPromotionOffer(with error: Error, offerData: (productId: String, offerId: String)) {

@@ -34,7 +34,8 @@ extension MainAPI {
     private static var defaultParams: [String: AnyObject] {
         let params = [
             "sdkKey": B2S.shared.sdkKey,
-            "deviceId": B2S.deviceId
+            "deviceId": B2S.deviceId,
+            "lang": B2S.shared.language
             ] as [String: AnyObject]
         return params
     }
