@@ -37,7 +37,7 @@ class FirstOfferViewController: UIViewController {
     //Bottom content
     @IBOutlet weak var bottomDescriptionLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var termsAndPrivacyTextView: UITextView!
+    @IBOutlet weak var footerTextView: UITextView!
     @IBOutlet weak var loaderView: UIView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
@@ -50,17 +50,12 @@ class FirstOfferViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        B2S.shared.delegate?.b2sScreenDidAppear?()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        B2S.shared.delegate?.b2sScreenWillDismiss?()
+        presenter?.viewDidAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        B2S.shared.delegate?.b2sScreenDidDismiss?()
+        presenter?.viewDidDisappear()
     }
 }
 
@@ -68,13 +63,13 @@ class FirstOfferViewController: UIViewController {
 extension FirstOfferViewController {
     private func configureUI() {
         actionButton.layer.cornerRadius = 4
-        termsAndPrivacyTextView.linkTextAttributes = [.foregroundColor: UIColor.hexStringToUIColor(hex: "#FBA12B")]
+        footerTextView.linkTextAttributes = [.foregroundColor: UIColor.hexStringToUIColor(hex: "#FBA12B")]
     }
 }
 
 // MARK: - FirstOfferView
 extension FirstOfferViewController: FirstOfferView {
-    func display(image: ImageData?, title: TextData?, subtitle: TextData?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?)) {
+    func display(image: ImageData?, title: TextData?, subtitle: TextData?, footer: String?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?)) {
         iconImageView.isHidden = image == nil
         if let imageData = image {
             displayImage(imageData, imageView: iconImageView, blurView: iconBlurView)
@@ -104,10 +99,8 @@ extension FirstOfferViewController: FirstOfferView {
         if let backgroundColor = background.color {
             backgroundView.backgroundColor = UIColor.hexStringToUIColor(hex: backgroundColor)
         }
-    }
-    
-    func display(termsAndPrivacyText: NSAttributedString) {
-        termsAndPrivacyTextView.attributedText = termsAndPrivacyText
+        
+        footerTextView.attributedText = footer?.htmlToString()
     }
     
     func startLoading() {

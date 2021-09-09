@@ -68,8 +68,14 @@ protocol FirstOfferView: AnyObject {
     
     var presenter: FirstOfferPresenterInterface? { get set }
     
-    func display(image: ImageData?, title: TextData?, subtitle: TextData?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?))
-    func display(termsAndPrivacyText: NSAttributedString)
+    func display(image: ImageData?,
+                 title: TextData?,
+                 subtitle: TextData?,
+                 footer: String?,
+                 offer: TextData?,
+                 promotionButton: ButtonData,
+                 background: (image: ImageData?,
+                              color: String?))
     
     func startLoading()
     func stopLoading()

@@ -41,6 +41,7 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
     }
 
     func didSelectClose() {
+        B2S.shared.pendingOffer = nil
         router.navigate(to: .dismiss)
     }
     
@@ -49,25 +50,19 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
         view?.display(image: offer.screenData.image,
                       title: offer.screenData.title,
                       subtitle: offer.screenData.subtitle,
+                      footer: offer.screenData.footer,
                       offer: offer.screenData.offer,
                       promotionButton: offer.screenData.promotionButton,
                       background: (image: offer.screenData.backgroundImage, color: offer.screenData.backgroundColor))
-        
-        if offer.screenData.rulesURL != nil || offer.screenData.privacyURL != nil {
-            var termsAndPrivacyText: String = "<style> p {text-align: center;}</style><body><p>{rulesURL} and {privacyURL}</p></body>"
-            if let rulesURL = offer.screenData.rulesURL {
-                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{rulesURL}", with: "<a href=\"\(rulesURL)\">Terms of Service</a>")
-            } else {
-                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{rulesURL} and ", with: "")
-            }
-            if let privacyURL = offer.screenData.privacyURL {
-                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: "{privacyURL}", with: "<a href=\"\(privacyURL)\">Privacy Policy</a>")
-            } else {
-                termsAndPrivacyText = termsAndPrivacyText.replacingOccurrences(of: " and {privacyURL}", with: "")
-            }
-            let termsColor = UIColor.hexStringToUIColor(hex: offer.screenData.subtitle.color)
-            view?.display(termsAndPrivacyText: termsAndPrivacyText.htmlToString(color: termsColor))
-        }
+    }
+    
+    func viewDidAppear() {
+        B2S.shared.delegate?.b2sScreenDidAppear?()
+    }
+    
+    func viewDidDisappear() {
+        B2S.shared.pendingOffer = nil
+        B2S.shared.delegate?.b2sScreenDidDismiss?()
     }
 }
 

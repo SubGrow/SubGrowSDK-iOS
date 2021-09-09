@@ -22,8 +22,10 @@ final public class B2S {
     }
     internal var sdkKey: String!
     internal var pendingOffer: Offer?
+
     public var delegate: B2SDelegate?
     public var language: String = Bundle.main.preferredLocalizations.first ?? "en"
+    
     /**
      Initializes B2S SDK. Call it during app launch.
      - parameter sdkKey: Required. Your app's SDK key.
@@ -42,10 +44,7 @@ final public class B2S {
         
         B2SService.getOffer()
             .then { [weak self] offer in
-                self?.pendingOffer = offer
-                if self?.delegate?.b2sShouldDisplayPromotionOfferScreen?() != false {
-                    self?.showPendingPromotionOfferScreen()
-                }
+                self?.handleOffer(offer)
             }
     }
     
@@ -63,8 +62,29 @@ final public class B2S {
     }
     
     /**
-     Returns `true` if there is pending promotion offer screen.
+     Handling push notification event.
+     - parameter userInfo: A dictionary that contains information related to the remote notification.
+     - Returns: `true` for SDK related notifications..
+     */
+    @discardableResult
+    @objc
+    public func handleRemoteNotification(userInfo: [AnyHashable: Any]) -> Bool {
+        guard let b2sDict = userInfo["b2s"] as? [String: Any] else { return false }
+        guard let data = try? JSONSerialization.data(withJSONObject: b2sDict, options: []),
+              let pushNotification = try? JSONDecoder().decode(PushNotification.self, from: data) else { return  true }
+        
+        switch pushNotification.type {
+        case .offer:
+            guard let offer = pushNotification.data else { return true }
+            handleOffer(offer)
+        }
+        
+        return true
+    }
+
+    /**
      Manually present promotion offer screen that was delayed for presentation, i.e. `false` was returned in `b2sShouldDisplayPromotionOfferScreen` delegate method.
+     - Returns: `true` if there is pending promotion offer screen.
      */
     @discardableResult
     @objc
@@ -72,9 +92,19 @@ final public class B2S {
         guard let offer = pendingOffer else {
             return false
         }
-        pendingOffer = nil
         let vc = FirstOfferConfigurator.createModule(with: offer)
         UIApplication.topViewController()?.present(vc, animated: true)
         return true
+    }
+}
+
+// MARK: - Private methods
+extension B2S {
+    private func handleOffer(_ offer: Offer) {
+        guard pendingOffer == nil else { return }
+        pendingOffer = offer
+        if delegate?.b2sShouldDisplayPromotionOfferScreen?() != false {
+            showPendingPromotionOfferScreen()
+        }
     }
 }
