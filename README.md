@@ -1,5 +1,23 @@
+BackToSubscribtion SDK is an framework that makes implementing in-app subscriptions in iOS.  (!!!ENGLISH BELOW!!!)
+
+First you need to register in our site https://www.backtosub.jp
+
+![step1_ja](https://user-images.githubusercontent.com/88994667/156277531-a5a3fba0-97a7-4979-a810-c36fbfdc4b8d.png)
+
 # Requirements
 B2S SDK requires minimum iOS 12.3 and Swift version 5.0.
+
+# Demo app
+You can install and test our Demo app and test how service works, if you have any qustion please wite to us info@backtosub.com
+
+After install demo app you can subscribe in subscribtion plan which 1 month = 5 min, to unsubscribe you need to go settings on your iPhone, profile, subscribtion and unsubscribe there.
+
+https://testflight.apple.com/join/2jiV70RP
+
+<img width="375" alt="Demo JP" src="https://user-images.githubusercontent.com/88994667/156279195-9bbd764f-5516-4ac0-a28e-8a8260eae4a0.png">
+
+*it will not charge you real money, we use Apple SANDBOX in this app.
+
 # Installation
 B2S SDK currently can be installed via CocoaPods, Swift Package Manager or manually.
 # Install via CocoaPods
@@ -27,9 +45,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   return true
 }
 ```
-Это все что вам нужно, чтобы B2S начал возвращать отписавшихся.
 
-Когда пользователь совершит покупку подписки через promotion offer вызовится метод B2SDelegate:
+This what you need that B2S starts to return unsubscribe users.
+
+When a user makes a purchase of a subscription through a promotion offer, the B2SDelegate method will be called: 
 
 ```sh 
 extension MainViewController: B2SDelegate {
