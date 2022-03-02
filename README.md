@@ -2,7 +2,9 @@ BackToSubscribtion SDK is an framework that makes implementing in-app subscripti
 
 First you need to register in our site https://www.backtosub.jp
 
-What we do?
+Please check documents how to implements our SDK and how to use it [link](https://docs.backtosub.jp).
+
+How it works?
 
 ![step1_ja](https://user-images.githubusercontent.com/88994667/156277531-a5a3fba0-97a7-4979-a810-c36fbfdc4b8d.png)
 
@@ -33,7 +35,7 @@ Add package dependency with the following URL:
 https://github.com/BackToTheSubscription/B2S
 ```
 # Manual Installation
-Please check docu how to implements our SDK and how to use it our site [link](https://docs.backtosub.jp).
+Copy all files from B2S folder to your project from this [link](https://github.com/BackToTheSubscription/B2S).
 # Initialise SDK
 To initialise B2S SDK you will need SDK Key. It is a unique identifier of your B2S application. Мы можете взять его из вашего приложения в личном кабинете
 Basic initialisation looks like this:
