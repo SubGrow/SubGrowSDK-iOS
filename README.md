@@ -33,7 +33,7 @@ Add package dependency with the following URL:
 https://github.com/BackToTheSubscription/B2S
 ```
 # Manual Installation
-Copy all files from B2S folder to your project from this [link](https://github.com/BackToTheSubscription/B2S).
+Please check docu how to implements our SDK and how to use it our site [link](https://docs.backtosub.jp).
 # Initialise SDK
 To initialise B2S SDK you will need SDK Key. It is a unique identifier of your B2S application. Мы можете взять его из вашего приложения в личном кабинете
 Basic initialisation looks like this:
