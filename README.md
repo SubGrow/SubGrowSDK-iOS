@@ -1,6 +1,8 @@
-BackToSubscribtion SDK is an framework that makes implementing in-app subscriptions in iOS.  (!!!ENGLISH BELOW!!!)
+BackToSubscribtion SDK is an framework that makes implementing in-app subscriptions in iOS. (!!!ENGLISH BELOW!!!)
 
 First you need to register in our site https://www.backtosub.jp
+
+What we do?
 
 ![step1_ja](https://user-images.githubusercontent.com/88994667/156277531-a5a3fba0-97a7-4979-a810-c36fbfdc4b8d.png)
 
@@ -47,7 +49,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ```
 
 This what you need that B2S starts to return unsubscribe users.
-
 When a user makes a purchase of a subscription through a promotion offer, the B2SDelegate method will be called: 
 
 ```sh 
