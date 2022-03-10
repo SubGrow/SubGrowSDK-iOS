@@ -59,8 +59,8 @@ extension MainViewController: B2SDelegate {
     }
 }
 ```
+# 
 
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 Back To Subscription SDK is a framework that makes implementing in-app subscriptions in iOS. 
 First, you need to register in our site https://www.backtosub.jp
 
