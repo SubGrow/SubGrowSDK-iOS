@@ -1,5 +1,5 @@
 Back To SubscriptionはiOSの有料課金アプリにSDKを組み込んで使用して頂くフレームワークです。まずは当社サイトでアカウント登録をお願い致します。https://www.backtosub.jp
-SDKを組み込むとこんなことが可能になります。
+SDKを組み込むとこんなことが可能になります。(ENGLISH BELOW)
 
 導入までの流れ：
 
@@ -59,7 +59,7 @@ extension MainViewController: B2SDelegate {
     }
 }
 ```
-# 
+# ENGLISH 
 
 Back To Subscription SDK is a framework that makes implementing in-app subscriptions in iOS. 
 First, you need to register in our site https://www.backtosub.jp
