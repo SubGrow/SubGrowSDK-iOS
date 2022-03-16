@@ -66,7 +66,7 @@ First, you need to register in our site https://www.backtosub.jp
 
 What we do?
 
-![step1_ja](https://user-images.githubusercontent.com/88994667/156277531-a5a3fba0-97a7-4979-a810-c36fbfdc4b8d.png)
+![workflow](https://user-images.githubusercontent.com/88994667/158531074-40c00ae0-79a6-4851-aaf7-25b90d86d4a4.png)
 
 # Requirements
 Back To Subscription SDK requires minimum iOS 12.3 and Swift version 5.0.
@@ -78,7 +78,7 @@ After installing demo app, you can subscribe in a subscription plan like 1 month
 
 https://testflight.apple.com/join/aF01qTu5
 
-<img width="375" alt="Demo JP" src="https://user-images.githubusercontent.com/88994667/156279195-9bbd764f-5516-4ac0-a28e-8a8260eae4a0.png">
+![Demo](https://user-images.githubusercontent.com/88994667/158531407-324855a6-46c3-46d1-b600-cb44ec581f44.png)
 
 *We will not charge you, we use Apple SANDBOX in this app.
 
