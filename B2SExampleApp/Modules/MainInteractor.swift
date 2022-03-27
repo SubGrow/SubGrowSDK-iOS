@@ -17,10 +17,44 @@ final class MainInteractor: MainInteractorInput {
     
     // MARK: - Properties
     weak var presenter: MainInteractorOutput?
-    
+
+
     // MARK: - MainInteractorInput
+    func fetchCurrentPurchaseStatus() {
+//        guard let productId = currentProductId else {
+//            return
+//        }
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "3cc80272c7b048128d5087de730dd7dc")
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { [weak self] result in
+            switch result {
+            case .success(let receipt):
+                // Verify the purchase of a Subscription
+                let purchasesResults = productIds.map {
+                    SwiftyStoreKit.verifySubscription(
+                        ofType: .autoRenewable,
+                        productId: $0,
+                        inReceipt: receipt
+                    )
+                }
+                let _ = purchasesResults.first {
+                    if case .purchased(let expiryDate, let items) = $0, expiryDate > Date() {
+                        self?.presenter?.fetchedCurrentPurchaseStatus(with: (productId: items[0].productId, isActive: true, expDate: expiryDate))
+                    }
+                    return false
+                }
+            case .error(let error):
+                self?.presenter?.fetchedCurrentPurchaseStatus(with: (productId: "", error: error))
+                print("Receipt verification failed: \(error)")
+            }
+        }
+    }
+    
     func purchaseProduct(id: String) {
-        SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: true) { [weak self] result in
+        SwiftyStoreKit.purchaseProduct(
+            id,
+            quantity: 1,
+            atomically: true
+        ) { [weak self] result in
             switch result {
             case .success(let product):
                 self?.presenter?.fetchedFully()

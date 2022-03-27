@@ -46,7 +46,10 @@ extension MainPresenterInterface {
 
 // MARK: - Interactor
 protocol MainInteractorOutput: AnyObject {
-    
+
+    func fetchedCurrentPurchaseStatus(with data: (productId: String, isActive: Bool, expDate: Date?))
+    func fetchedCurrentPurchaseStatus(with errorData: (productId: String, error: Error))
+
     func purchasedProduct()
     func purchasedProduct(with error: Error)
     
@@ -57,7 +60,8 @@ protocol MainInteractorOutput: AnyObject {
 protocol MainInteractorInput: AnyObject {
     
     var presenter: MainInteractorOutput? { get set }
-    
+
+    func fetchCurrentPurchaseStatus()
     func purchaseProduct(id: String)
     /* Presenter -> Interactor */
 }
@@ -66,7 +70,11 @@ protocol MainInteractorInput: AnyObject {
 protocol MainView: AnyObject {
     
     var presenter: MainPresenterInterface? { get set }
-    
+
+    func displayActive(productId: String,
+                       expDate: String)
+    func resetSubscriptionsStates()
+
     func startLoading()
     func stopLoading()
     /* Presenter -> ViewController */

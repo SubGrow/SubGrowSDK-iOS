@@ -9,6 +9,14 @@ import UIKit
 import B2S
 import SwiftyStoreKit
 
+
+let productIds: [String] = ["com.b2s.subscription.freemonth",
+                            "com.b2s.subscription.oneMonth",
+                            "com.b2s.subscription.threemonth",
+                            "com.b2s.subscription.sixmonth",
+                            "com.b2s.subscription.oneYear"]
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,16 +24,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.rootViewController = MainConfigurator.createModule()
+        B2S.shared.configure(sdkKey: "7ea57fec-ed9d-4fb9-8f24-51947fe25066",
+                             delegate: nil)
+        TimeService.enableAutoSync()
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
         registerForPushNotifications()
-        SwiftyStoreKit.completeTransactions(atomically: true) { _ in }
-        B2S.shared.configure(sdkKey: "7ea57fec-ed9d-4fb9-8f24-51947fe25066")
-        
+
         return true
     }
-}
 
-// MARK: - Remote Notifications
-extension AppDelegate: UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        B2S.shared.setPushToken(deviceToken)
+    }
+
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
@@ -36,26 +60,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
             guard granted else { return }
             self.getNotificationSettings()
         }
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        B2S.shared.setPushToken(deviceToken)
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        B2S.shared.handleRemoteNotification(userInfo: userInfo)
-        completionHandler()
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
     }
 }
 

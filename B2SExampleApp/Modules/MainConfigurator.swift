@@ -32,7 +32,9 @@ struct MainConfigurator {
         
         let interactor = MainInteractor()
         let router = MainRouter()
-        let presenter = MainPresenter(interface: view, interactor: interactor, router: router)
+        let presenter = MainPresenter(interface: view,
+                                      interactor: interactor,
+                                      router: router)
         
         view.presenter = presenter
         interactor.presenter = presenter

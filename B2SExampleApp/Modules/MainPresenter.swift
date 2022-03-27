@@ -19,19 +19,27 @@ final class MainPresenter {
     weak private var view: MainView?
     var interactor: MainInteractorInput?
     private let router: MainWireframeInterface
-    
+    private var activeSubscription: (id: String, expDate: Date)?
+
     // MARK: - Initialization and deinitialization
-    init(interface: MainView,
+    init(
+        interface: MainView,
          interactor: MainInteractorInput?,
-         router: MainWireframeInterface) {
+         router: MainWireframeInterface
+    ) {
         self.view = interface
         self.interactor = interactor
         self.router = router
+
+        NotificationCenter.default.addObserver(forName: .init(rawValue: "didPassSecond"), object: nil, queue: nil) { [weak self] _ in
+            self?.updateContent()
+        }
     }
 }
 
 // MARK: - MainPresenterInterface
 extension MainPresenter: MainPresenterInterface {
+
     func didRequestPurchaseProduct(name: String) {
         view?.startLoading()
         interactor?.purchaseProduct(id: name)
@@ -39,14 +47,27 @@ extension MainPresenter: MainPresenterInterface {
     
     // MARK: - Lifecycle -
     func viewDidLoad() {
+        view?.resetSubscriptionsStates()
+        interactor?.fetchCurrentPurchaseStatus()
         B2S.shared.delegate = self
     }
 }
 
 // MARK: - MainInteractorOutput
 extension MainPresenter: MainInteractorOutput {
+
+    func fetchedCurrentPurchaseStatus(with data: (productId: String, isActive: Bool, expDate: Date?)) {
+        guard data.isActive, let expDate = data.expDate else { return }
+        activeSubscription = (data.productId, expDate)
+        updateContent()
+    }
+
+    func fetchedCurrentPurchaseStatus(with errorData: (productId: String, error: Error)) {
+
+    }
+
     func purchasedProduct() {
-        
+        interactor?.fetchCurrentPurchaseStatus()
     }
     
     func purchasedProduct(with error: Error) {
@@ -60,8 +81,25 @@ extension MainPresenter: MainInteractorOutput {
 
 // MARK: - B2SDelegate
 extension MainPresenter: B2SDelegate {
+    
     func b2sPromotionOfferDidPurchase(productId: String, offerId: String, transaction: SKPaymentTransaction) {
         // Deliver content from server, aaply subscription and then call: SKPaymentQueue.default().finishTransaction(transaction) unless you do it elsewhere
     }
 }
 
+
+extension MainPresenter {
+
+    private func updateContent() {
+        if (activeSubscription?.expDate ?? Date()) <= Date() {
+            activeSubscription = nil
+        }
+        guard let activeSubscription = activeSubscription else {
+            view?.resetSubscriptionsStates()
+            return
+        }
+        let expText = activeSubscription.expDate.timeIntervalSince(Date()).formatedTime(allowedUnits: [.hour, .minute, .second])
+        view?.displayActive(productId: activeSubscription.id,
+                            expDate: expText ?? "")
+    }
+}

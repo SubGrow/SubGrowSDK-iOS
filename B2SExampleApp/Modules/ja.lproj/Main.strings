@@ -1,0 +1,51 @@
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "6pt-fh-4iA"; */
+"6pt-fh-4iA.normalTitle" = "1000円";
+
+/* Class = "UILabel"; text = "One month"; ObjectID = "7Bt-kt-QI6"; */
+"7Bt-kt-QI6.text" = "1ヶ月プラン";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "7r9-Gb-xNe"; */
+"7r9-Gb-xNe.normalTitle" = "開始";
+
+/* Class = "UILabel"; text = "Free trial"; ObjectID = "Ae5-3m-yLK"; */
+"Ae5-3m-yLK.text" = "試用期間";
+
+/* Class = "UILabel"; text = "1 hour"; ObjectID = "CET-P8-2cS"; */
+"CET-P8-2cS.text" = "1時間継続";
+
+/* Class = "UILabel"; text = "Will last 5 mins"; ObjectID = "EdV-QD-ai0"; */
+"EdV-QD-ai0.text" = "5分間継続";
+
+/* Class = "UIButton"; normalTitle = "600円"; ObjectID = "JUM-rn-Z8w"; */
+"JUM-rn-Z8w.normalTitle" = "600円";
+
+/* Class = "UILabel"; text = "15 mins"; ObjectID = "N8k-4Z-tS4"; */
+"N8k-4Z-tS4.text" = "15分間継続";
+
+/* Class = "UILabel"; text = "One year"; ObjectID = "O5T-gK-4Bq"; */
+"O5T-gK-4Bq.text" = "1年プラン";
+
+/* Class = "UILabel"; text = "5 mins"; ObjectID = "WQZ-RD-PEp"; */
+"WQZ-RD-PEp.text" = "5分間継続";
+
+/* Class = "UIButton"; normalTitle = "100円"; ObjectID = "XUR-9J-b1v"; */
+"XUR-9J-b1v.normalTitle" = "100円";
+
+/* Class = "UILabel"; text = "Test your subscription"; ObjectID = "gZp-v6-Xcn"; */
+"gZp-v6-Xcn.text" = "あなたのサブスクリプションをテスト";
+
+/* Class = "UIButton"; normalTitle = "300円"; ObjectID = "gme-Y4-IoF"; */
+"gme-Y4-IoF.normalTitle" = "300円";
+
+/* Class = "UILabel"; text = "6 months"; ObjectID = "hOV-fS-gif"; */
+"hOV-fS-gif.text" = "６ヶ月プラン";
+
+/* Class = "UILabel"; text = "3 months"; ObjectID = "lVN-76-B7f"; */
+"lVN-76-B7f.text" = "３ヶ月プラン";
+
+/* Class = "UILabel"; text = "These are test subscriptions. You won’t be charged any money."; ObjectID = "yQR-ga-89i"; */
+"yQR-ga-89i.text" = "こちらはサブスクリプションのテストになります。費用は無料です。";
+
+/* Class = "UILabel"; text = "30 mins"; ObjectID = "yvK-YP-oyb"; */
+"yvK-YP-oyb.text" = "30分間継続";

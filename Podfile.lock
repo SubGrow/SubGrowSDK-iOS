@@ -1,23 +1,16 @@
 PODS:
-  - B2S (1.0.8)
   - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
-  - B2S (from `.`)
   - SwiftyStoreKit
 
 SPEC REPOS:
   trunk:
     - SwiftyStoreKit
 
-EXTERNAL SOURCES:
-  B2S:
-    :path: "."
-
 SPEC CHECKSUMS:
-  B2S: ef36ce1d3bfb05a8eb372ba21cee420938e1e8c3
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 81215793aa2cda766b494501e1ca4b713f9a81c0
+PODFILE CHECKSUM: dfc430f00690bf7ee04afc9f357426de62d10e2b
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.3

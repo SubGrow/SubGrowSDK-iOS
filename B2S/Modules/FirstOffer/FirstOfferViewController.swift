@@ -91,7 +91,7 @@ extension FirstOfferViewController: FirstOfferView {
         actionButton.setTitleColor(UIColor.hexStringToUIColor(hex: promotionButton.textColor), for: .normal)
         actionButton.backgroundColor = UIColor.hexStringToUIColor(hex: promotionButton.backgroundColor)
         
-        backgroundImageView.isHidden = image == nil
+        backgroundImageView.isHidden = background.image == nil
         if let imageData = background.image {
             displayImage(imageData, imageView: backgroundImageView, blurView: backgroundImageBlurView)
         }
@@ -136,6 +136,7 @@ extension FirstOfferViewController {
     private func displayImage(_ data: ImageData, imageView: UIImageView, blurView: UIVisualEffectView) {
         if let imageData = data.data, let image = UIImage(data: imageData) {
             imageView.image = image
+            blurView.alpha = 0
             return
         }
         

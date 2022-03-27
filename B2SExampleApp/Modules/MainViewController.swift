@@ -13,12 +13,20 @@ import UIKit
 import B2S
 
 class MainViewController: UIViewController {
+    
     // MARK: - Properties
 	var presenter: MainPresenterInterface?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
 
     // MARK: - IBOutlets
     @IBOutlet weak var loaderView: UIView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
+    @IBOutlet var subscriptionsViews: [UIView]!
+    @IBOutlet var timersLabels: [UILabel]!
+    @IBOutlet var buyButtons: [UIButton]!
 
     // MARK: - Lifecycle -
 	override func viewDidLoad() {
@@ -30,12 +38,34 @@ class MainViewController: UIViewController {
 
 // MARK: - UI Configuration
 extension MainViewController {
+
     private func configureUI() {
     }
 }
 
 // MARK: - MainView
 extension MainViewController: MainView {
+
+    func displayActive(productId: String, expDate: String) {
+        let tag: Int = productIds.firstIndex(of: productId) ?? 0
+        let timerLabel = timersLabels[tag]
+        timerLabel.text = expDate
+        timerLabel.superview?.isHidden = false
+        buyButtons[tag].isHidden = true
+        subscriptionsViews[tag].layer.shadowOpacity = 1
+    }
+
+    func resetSubscriptionsStates() {
+        buyButtons.forEach { $0.isHidden = false }
+        timersLabels.forEach { $0.superview?.isHidden = true }
+        subscriptionsViews.forEach {
+            $0.layer.shadowColor = UIColor.white.cgColor
+            $0.layer.shadowOffset = .zero
+            $0.layer.shadowRadius = 30
+            $0.layer.shadowOpacity = 0
+        }
+    }
+
     func startLoading() {
         UIView.animate(withDuration: 0.25) {
             self.loaderView.alpha = 1.0
@@ -53,13 +83,11 @@ extension MainViewController: MainView {
 
 // MARK: - Actions
 extension MainViewController {
+
     @IBAction
     func purchaseDidSelect(_ sender: UIButton) {
-        presenter?.didRequestPurchaseProduct(name: "com.b2s.subscription.oneMonth")
-    }
-    
-    @IBAction
-    func openPromoDidSelect() {
+        let productName: String = productIds[sender.tag]
+        presenter?.didRequestPurchaseProduct(name: productName)
     }
 }
 
