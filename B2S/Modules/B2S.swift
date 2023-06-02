@@ -53,12 +53,12 @@ final public class B2S {
      - parameter token: Push token in Data class.
     */
     @objc
-    public func setPushToken(_ pushToken: Data) {
+    public func setPushToken(_ pushToken: Data, countryCode: String? = nil) {
         let tokenParts = pushToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
         let token = tokenParts.joined()
-        B2SService.setPushToken(token)
+        B2SService.setPushToken(token, countryCode: countryCode)
     }
     
     /**

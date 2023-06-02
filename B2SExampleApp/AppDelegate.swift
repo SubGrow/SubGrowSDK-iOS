@@ -8,13 +8,20 @@
 import UIKit
 import B2S
 import SwiftyStoreKit
+import StoreKit
 
+// old
+//let productIds: [String] = ["com.b2s.subscription.freemonth",
+//                            "com.b2s.subscription.oneMonth",
+//                            "com.b2s.subscription.threemonth",
+//                            "com.b2s.subscription.sixmonth",
+//                            "com.b2s.subscription.oneYear"]
 
-let productIds: [String] = ["com.b2s.subscription.freemonth",
-                            "com.b2s.subscription.oneMonth",
-                            "com.b2s.subscription.threemonth",
-                            "com.b2s.subscription.sixmonth",
-                            "com.b2s.subscription.oneYear"]
+let productIds: [String] = ["com.subgrow.subscription.freemonth",
+                            "com.subgrow.subscription.onemonth",
+                            "com.subgrow.subscription.threemonth",
+                            "com.subgrow.subscription.sixmonth",
+                            "com.subgrow.subscription.oneyear"]
 
 
 @main
@@ -47,7 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        B2S.shared.setPushToken(deviceToken)
+        let code: String? = {
+            if let storeFront = SKPaymentQueue.default().storefront {
+                return storeFront.countryCode
+            }
+            return nil
+        }()
+        B2S.shared.setPushToken(deviceToken, countryCode: code)
     }
 
     func getNotificationSettings() {
