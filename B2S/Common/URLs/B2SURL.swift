@@ -9,7 +9,8 @@ import Foundation
 
 enum B2SURL: String, Host {
     var host: String {
-        return "https://return.bogunov.co.jp"
+        return "https://app.subgrow.net"
+//        return "https://return.bogunov.co.jp"
     }
     case root = ""
     case api = "/api"

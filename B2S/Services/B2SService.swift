@@ -61,8 +61,10 @@ struct B2SService {
         }
     }
     
-    static func setPushToken(_ token: String) {
-        UserAPI.setPushToken(token, completion: nil)
+    static func setPushToken(_ token: String, countryCode: String? = nil) {
+        UserAPI.setPushToken(token, countryCode: countryCode) { response in
+            print(response)
+        }
     }
 }
 

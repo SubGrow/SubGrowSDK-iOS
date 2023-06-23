@@ -92,6 +92,7 @@ extension FirstOfferViewController: FirstOfferView {
         actionButton.backgroundColor = UIColor.hexStringToUIColor(hex: promotionButton.backgroundColor)
         
         backgroundImageView.isHidden = background.image == nil
+        backgroundImageBlurView.isHidden = background.image == nil
         if let imageData = background.image {
             displayImage(imageData, imageView: backgroundImageView, blurView: backgroundImageBlurView)
         }
