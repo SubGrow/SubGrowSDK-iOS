@@ -10,4 +10,5 @@ import Foundation
 struct TextData: Codable {
     let color: String
     let text: String
+    let align: String?
 }

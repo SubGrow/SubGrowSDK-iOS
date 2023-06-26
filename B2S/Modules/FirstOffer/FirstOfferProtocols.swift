@@ -81,3 +81,16 @@ protocol FirstOfferView: AnyObject {
     func stopLoading()
     /* Presenter -> ViewController */
 }
+
+enum FirstOfferAlignment: Int, Codable {
+    typealias RawValue = Int
+    case left = 0, center, right
+    init?(rawValue: String) {
+        switch rawValue {
+        case "left" : self = .left
+        case "center" : self = .center
+        case "right" : self = .right
+        default: return nil
+        }
+    }
+}
