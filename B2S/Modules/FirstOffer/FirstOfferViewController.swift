@@ -85,6 +85,7 @@ extension FirstOfferViewController: FirstOfferView {
         titleLabel.isHidden = title == nil
         
         subtitleLabel.text = subtitle?.text
+        subtitleLabel.textColor = UIColor.hexStringToUIColor(hex: subtitle?.color ?? "" )
         if let align = subtitle?.align,
            let alignCase = FirstOfferAlignment(rawValue: align),
            let nSTextAlignment = NSTextAlignment(rawValue: alignCase.rawValue) {
