@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|  
-    s.name              = 'B2S'
-    s.version           = '1.0.8'
+    s.name              = 'Subgrow'
+    s.version           = '1.0.10'
     s.summary           = 'Return your subscribers in easy way'
-    s.homepage          = 'https://backtosub.com/'
+    s.homepage          = 'https://subgrow.jp'
 
-    s.author            = { 'Konstantin' => 'info@backtosub.com' }
+    s.author            = { 'Konstantin' => 'kostya@subgrow.jp' }
     s.license           = { :type => 'MIT', :file => 'LICENSE' }
 
     s.source            = { :git => "https://github.com/BackToTheSubscription/B2S.git", :tag => "#{s.version}" }

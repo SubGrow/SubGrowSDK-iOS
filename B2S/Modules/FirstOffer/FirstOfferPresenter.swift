@@ -44,6 +44,17 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
         B2S.shared.pendingOffer = nil
         router.navigate(to: .dismiss)
     }
+
+    func keyReplacement(offerText: String, product: SKProduct) -> String {
+        var replacedOfferText: String = offerText
+        if replacedOfferText.contains(OfferStringKeys.actual_price.rawValue) {
+            replacedOfferText = replacedOfferText.replacingOccurrences(of: OfferStringKeys.actual_price.rawValue, with: "\(product.localizedPrice ?? "")")
+        }
+        if replacedOfferText.contains(OfferStringKeys.discount_price.rawValue) && product.discounts.first != nil {
+            replacedOfferText = replacedOfferText.replacingOccurrences(of: OfferStringKeys.discount_price.rawValue, with: "\(product.discounts.first!.price.stringValue)" + " \(product.discounts.first!.priceLocale.currencySymbol!)")
+        }
+        return replacedOfferText
+    }
     
     // MARK: - Lifecycle -
     func viewDidLoad() {
@@ -53,7 +64,9 @@ extension FirstOfferPresenter: FirstOfferPresenterInterface {
                       footer: offer.screenData.footer,
                       offer: offer.screenData.offer,
                       promotionButton: offer.screenData.promotionButton,
-                      background: (image: offer.screenData.backgroundImage, color: offer.screenData.backgroundColor))
+                      background: (image: offer.screenData.backgroundImage,
+                                   color: offer.screenData.backgroundColor),
+                      productId: offer.productId)
     }
     
     func viewDidAppear() {
@@ -80,5 +93,23 @@ extension FirstOfferPresenter: FirstOfferInteractorOutput {
     
     func fetchedFully() {
         view?.stopLoading()
+    }
+}
+extension SKProduct {
+    private static let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+    var isFree: Bool {
+        price == 0.00
+    }
+    var localizedPrice: String? {
+        guard !isFree else {
+            return nil
+        }
+        let formatter = SKProduct.formatter
+        formatter.locale = priceLocale
+        return formatter.string(from: price)
     }
 }

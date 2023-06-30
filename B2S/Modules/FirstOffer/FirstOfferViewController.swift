@@ -10,10 +10,11 @@
 //
 
 import UIKit
+import StoreKit
 
 class FirstOfferViewController: UIViewController {
     // MARK: - Properties
-	var presenter: FirstOfferPresenterInterface?
+    var presenter: FirstOfferPresenterInterface?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
             return .darkContent
@@ -42,7 +43,7 @@ class FirstOfferViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     // MARK: - Lifecycle -
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         presenter?.viewDidLoad()
@@ -69,49 +70,52 @@ extension FirstOfferViewController {
 
 // MARK: - FirstOfferView
 extension FirstOfferViewController: FirstOfferView {
-    func display(image: ImageData?, title: TextData?, subtitle: TextData?, footer: String?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?)) {
-        iconImageView.isHidden = image == nil
-        if let imageData = image {
-            displayImage(imageData, imageView: iconImageView, blurView: iconBlurView)
-        }
-        
-        titleLabel.text = title?.text
-        titleLabel.textColor = UIColor.hexStringToUIColor(hex: title?.color ?? "" )
-        if let align = title?.align,
-           let alignCase = FirstOfferAlignment(rawValue: align),
-           let nSTextAlignment = NSTextAlignment(rawValue: alignCase.rawValue) {
-            titleLabel.textAlignment = nSTextAlignment
-        }
-        titleLabel.isHidden = title == nil
-        
-        subtitleLabel.text = subtitle?.text
-        subtitleLabel.textColor = UIColor.hexStringToUIColor(hex: subtitle?.color ?? "" )
-        if let align = subtitle?.align,
-           let alignCase = FirstOfferAlignment(rawValue: align),
-           let nSTextAlignment = NSTextAlignment(rawValue: alignCase.rawValue) {
-            subtitleLabel.textAlignment = nSTextAlignment
-        }
-        subtitleLabel.isHidden = subtitle == nil
-        
-        bottomDescriptionLabel.text = offer?.text
-        bottomDescriptionLabel.textColor = UIColor.hexStringToUIColor(hex: offer?.color ?? "" )
-        bottomDescriptionLabel.isHidden = offer == nil
+    func display(image: ImageData?, title: TextData?, subtitle: TextData?, footer: String?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?), productId: String) {
+        StoreService.fetchProduct(id: productId)
+            .then {[weak self] product -> () in
+                guard let strongSelf = self, let offer = offer else { return }
+                let offerText = strongSelf.presenter?.keyReplacement(offerText: offer.text, product: product)
+                strongSelf.iconImageView.isHidden = image == nil
+                if let imageData = image {
+                    strongSelf.displayImage(imageData, imageView: strongSelf.iconImageView, blurView: strongSelf.iconBlurView)
+                }
+                strongSelf.titleLabel.text = title?.text
+                strongSelf.titleLabel.textColor = UIColor.hexStringToUIColor(hex: title?.color ?? "" )
+                if let align = title?.align,
+                   let alignCase = FirstOfferAlignment(rawValue: align),
+                   let nSTextAlignment = NSTextAlignment(rawValue: alignCase.rawValue) {
+                    strongSelf.titleLabel.textAlignment = nSTextAlignment
+                }
+                strongSelf.titleLabel.isHidden = title == nil
 
-        actionButton.setTitle(promotionButton.text, for: .normal)
-        actionButton.setTitleColor(UIColor.hexStringToUIColor(hex: promotionButton.textColor), for: .normal)
-        actionButton.backgroundColor = UIColor.hexStringToUIColor(hex: promotionButton.backgroundColor)
-        
-        backgroundImageView.isHidden = background.image == nil
-        backgroundImageBlurView.isHidden = background.image == nil
-        if let imageData = background.image {
-            displayImage(imageData, imageView: backgroundImageView, blurView: backgroundImageBlurView)
-        }
-        
-        if let backgroundColor = background.color {
-            backgroundView.backgroundColor = UIColor.hexStringToUIColor(hex: backgroundColor)
-        }
-        
-        footerTextView.attributedText = footer?.htmlToString()
+                strongSelf.subtitleLabel.text = subtitle?.text
+                strongSelf.subtitleLabel.textColor = UIColor.hexStringToUIColor(hex: subtitle?.color ?? "" )
+                if let align = subtitle?.align,
+                   let alignCase = FirstOfferAlignment(rawValue: align),
+                   let nSTextAlignment = NSTextAlignment(rawValue: alignCase.rawValue) {
+                    strongSelf.subtitleLabel.textAlignment = nSTextAlignment
+                }
+                strongSelf.subtitleLabel.isHidden = subtitle == nil
+
+                strongSelf.bottomDescriptionLabel.text = offerText
+                strongSelf.bottomDescriptionLabel.textColor = UIColor.hexStringToUIColor(hex: offer.color)
+
+                strongSelf.actionButton.setTitle(promotionButton.text, for: .normal)
+                strongSelf.actionButton.setTitleColor(UIColor.hexStringToUIColor(hex: promotionButton.textColor), for: .normal)
+                strongSelf.actionButton.backgroundColor = UIColor.hexStringToUIColor(hex: promotionButton.backgroundColor)
+
+                strongSelf.backgroundImageView.isHidden = background.image == nil
+                strongSelf.backgroundImageBlurView.isHidden = background.image == nil
+                if let imageData = background.image {
+                    strongSelf.displayImage(imageData, imageView: strongSelf.backgroundImageView, blurView: strongSelf.backgroundImageBlurView)
+                }
+
+                if let backgroundColor = background.color {
+                    strongSelf.backgroundView.backgroundColor = UIColor.hexStringToUIColor(hex: backgroundColor)
+                }
+
+                strongSelf.footerTextView.attributedText = footer?.htmlToString()
+            }
     }
     
     func startLoading() {

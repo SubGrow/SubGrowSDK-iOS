@@ -28,6 +28,7 @@ protocol FirstOfferPresenterInterface: AnyObject {
     
     func didSelectAction()
     func didSelectClose()
+    func keyReplacement(offerText: String, product: SKProduct) -> String
     
     // MARK: - Lifecycle
     func viewDidLoad()
@@ -75,7 +76,8 @@ protocol FirstOfferView: AnyObject {
                  offer: TextData?,
                  promotionButton: ButtonData,
                  background: (image: ImageData?,
-                              color: String?))
+                              color: String?),
+                 productId: String)
     
     func startLoading()
     func stopLoading()
@@ -93,4 +95,9 @@ enum FirstOfferAlignment: Int, Codable {
         default: return nil
         }
     }
+}
+
+enum OfferStringKeys: String {
+    case actual_price = "actual_price"
+    case discount_price = "discount_price"
 }
