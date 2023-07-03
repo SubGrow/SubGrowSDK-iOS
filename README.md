@@ -88,7 +88,7 @@ Currently, SubGrow SDK can be installed via CocoaPods, Swift Package Manager or 
 # Install via CocoaPods
 Add the following line to your Podfile
 ```sh
-pod 'B2S'
+pod 'Subgrow'
 ```
 # Install via Swift Package Manager
 Add package dependency with the following URL:
@@ -100,7 +100,7 @@ Copy all files from SubGrow folder.And paste to your project(application) from t
 # Initialise SDK
 To initialize SubGrow SDK, you will need SDK Key. It is a unique identifier of your application that connects to SubGrow service . You can take SDK Key from your account in a Basic initialization . Here is more detail:
 ```sh 
-import B2S
+import Subgrow
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
   ...
