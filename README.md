@@ -111,7 +111,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   return true
 }
 ```
-You can get the available offer when you want. In this case you just have to import SDK and call the checkAndShowOffer function:
+You can get available offer when you want. In this case you just have to import SDK and call the checkAndShowOffer function:
 
 ```sh 
 import Subgrow
@@ -120,6 +120,20 @@ class ABC {
 ...
 B2S.shared.checkAndShowOffer()
 ...
+}
+```
+
+If you want to have push notification -> you have to send to SDK your device token:
+
+```sh 
+import Subgrow
+
+class AppDelegate {
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    ...
+    B2S.shared.setPushToken(deviceToken)
+    ...
+  }
 }
 ```
 
