@@ -98,15 +98,28 @@ https://github.com/SubGrow/SubGrowSDK
 # Manual Installation
 Copy all files from SubGrow folder.And paste to your project(application) from this [link](https://github.com/SubGrow/SubGrowSDK).
 # Initialise SDK
-To initialize SubGrow SDK, you will need SDK Key. It is a unique identifier of your application that connects to SubGrow service . You can take SDK Key from your account in a Basic initialization . Here is more detail:
+To initialize SubGrow SDK, you will need SDK Key. It is a unique identifier of your application that connects to SubGrow service . You can take SDK Key from your account in a Basic initialization.
+Also you can set checkAndShowOfferAtStart parameter if you want to see the offer screen after application launch (set true) or not (set false). By default it is true. Here is more detail:
+
 ```sh 
 import Subgrow
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
   ...
-  B2S.shared.configure(sdkKey: "Your_SDK_Key")
+  B2S.shared.configure(sdkKey: "Your_SDK_Key") // offer will be showed by default OR put B2S.shared.configure(sdkKey: "Your_SDK_Key", checkAndShowOfferAtStart: false) if you don't want to see the offer
   ...
   return true
+}
+```
+You can get the available offer when you want. In this case you just have to import SDK and call the checkAndShowOffer function:
+
+```sh 
+import Subgrow
+
+class ABC {
+...
+B2S.shared.checkAndShowOffer()
+...
 }
 ```
 
