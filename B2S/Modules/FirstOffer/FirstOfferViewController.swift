@@ -71,6 +71,7 @@ extension FirstOfferViewController {
 // MARK: - FirstOfferView
 extension FirstOfferViewController: FirstOfferView {
     func display(image: ImageData?, title: TextData?, subtitle: TextData?, footer: String?, offer: TextData?, promotionButton: ButtonData, background: (image: ImageData?, color: String?), productId: String) {
+        startLoading()
         StoreService.fetchProduct(id: productId)
             .then {[weak self] product -> () in
                 guard let strongSelf = self, let offer = offer else { return }
@@ -115,6 +116,7 @@ extension FirstOfferViewController: FirstOfferView {
                 }
 
                 strongSelf.footerTextView.attributedText = footer?.htmlToString()
+                strongSelf.stopLoading()
             }
     }
     

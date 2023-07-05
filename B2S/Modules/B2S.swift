@@ -29,11 +29,12 @@ final public class B2S {
     /**
      Initializes B2S SDK. Call it during app launch.
      - parameter sdkKey: Required. Your app's SDK key.
+     - parameter checkAndShowOfferAtStart: Optional. By default app will show available offer if it exist
      - parameter language: Optional. Offer screen localization language. Default main Bundle.main.preferredLocalizations.first or en
      - parameter delegate: Optional. Any B2SDelegate conformable object. You will be able to set it later
      */
     @objc
-    public func configure(sdkKey: String, language: String? = nil, delegate: B2SDelegate? = nil) {
+    public func configure(sdkKey: String, language: String? = nil, checkAndShowOfferAtStart: Bool = true, delegate: B2SDelegate? = nil) {
         guard self.sdkKey == nil else { return }
         self.sdkKey = sdkKey
         self.delegate = delegate
@@ -41,7 +42,16 @@ final public class B2S {
             self.language = language
         }
         _ = IAPHandler.shared
-        
+        if checkAndShowOfferAtStart {
+            self.checkAndShowOffer()
+        }
+    }
+
+    /**
+     Get B2S offer. Call it when it will be comfortable to show the offer view
+     */
+    @objc
+    public func checkAndShowOffer() {
         B2SService.getOffer()
             .then { [weak self] offer in
                 self?.handleOffer(offer)
