@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
     s.name              = 'Subgrow'
-    s.version           = '1.0.10'
+    s.version           = '1.0.11'
     s.summary           = 'Return your subscribers in easy way'
     s.homepage          = 'https://subgrow.jp'
 
