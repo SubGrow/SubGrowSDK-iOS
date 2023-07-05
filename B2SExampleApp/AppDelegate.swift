@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.rootViewController = MainConfigurator.createModule()
-        B2S.shared.configure(sdkKey: "7ea57fec-ed9d-4fb9-8f24-51947fe25066",
-                             delegate: nil)
+        B2S.shared.configure(sdkKey: "7ea57fec-ed9d-4fb9-8f24-51947fe25066", delegate: nil)
         TimeService.enableAutoSync()
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
             for purchase in purchases {
